@@ -11,6 +11,11 @@ java {
     sourceCompatibility = '17'
 }
 
+bootJar{
+    archivesBaseName = 'cliff-jigsaw'
+    archiveFileName = 'cliff-jigsaw-spring.jar'
+}
+
 configurations {
     compileOnly {
         extendsFrom annotationProcessor
