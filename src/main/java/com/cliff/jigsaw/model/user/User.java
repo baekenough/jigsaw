@@ -1,10 +1,7 @@
 package com.cliff.jigsaw.model.user;
 
 import com.cliff.jigsaw.model.user.vo.CreateUserVo;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -17,21 +14,19 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long userNid;
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_profile_nid")
+    private UserProfile userProfile;
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_favorite_nid")
+    private UserFavorite userFavorite;
     private String email;
     private String phoneNumber;
-    private String jobGroup;
-    private String skill;
-    private String field;
-    private String type;
 
     @Builder
     public User(CreateUserVo vo) {
         this.email = vo.getEmail();
         this.phoneNumber = vo.getPhoneNumber();
-        this.jobGroup = vo.getJobGroup();
-        this.skill = vo.getSkill();
-        this.field = vo.getField();
-        this.type = vo.getType();
     }
 
 }

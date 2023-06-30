@@ -7,7 +7,8 @@ import com.cliff.jigsaw.model.user.User;
 import com.cliff.jigsaw.model.user.UserProfile;
 import com.cliff.jigsaw.model.user.vo.CreateUserVo;
 import com.cliff.jigsaw.model.user.vo.UpdateUserVo;
-import com.cliff.jigsaw.model.user.vo.UserProfileVo;
+import com.cliff.jigsaw.model.user.vo.profile.CreateUserProfileVo;
+import com.cliff.jigsaw.model.user.vo.profile.GetUserProfileVo;
 import com.cliff.jigsaw.repository.UserProfileRepository;
 import com.cliff.jigsaw.repository.UserRepository;
 import com.cliff.jigsaw.service.UserService;
@@ -44,10 +45,6 @@ public class UserServiceImpl implements UserService {
         userRepository.findById(userNid)
                 .map(user -> {
                     user.setPhoneNumber(vo.getPhoneNumber());
-                    user.setJobGroup(vo.getJobGroup());
-                    user.setSkill(vo.getSkill());
-                    user.setField(vo.getField());
-                    user.setType(vo.getType());
                     return userRepository.saveAndFlush(user);
                 })
                 .orElseThrow(
@@ -63,18 +60,33 @@ public class UserServiceImpl implements UserService {
         return user;
     }
 
-    public UserProfileVo getProfile(Long userNid) {
+    @Override
+    public UserProfile createUserProfile(CreateUserProfileVo vo) {
+        UserProfile profile = new UserProfile(vo);
+        userProfileRepository.saveAndFlush(profile);
+        return profile;
+    }
+
+    @Override
+    public void updateUserProfileNid(Long userProfileNid, Long userNid) {
+        userRepository.updateUserProfileNid(userProfileNid, userNid);
+    }
+
+    public GetUserProfileVo getProfile(Long userNid) {
         UserProfile profile =  userProfileRepository.findByUserNid(userNid).orElseThrow(
                 () -> new CustomException(CustomErrorCode.USER_NOT_FOUND_ERROR)
         );
-        UserProfileVo vo = new UserProfileVo();
+        GetUserProfileVo vo = new GetUserProfileVo();
         vo.setUserProfileNid(profile.getUserProfileNid());
-        vo.setUserNid(profile.getUserNid());
-        vo.setFile(profile.getFile());
+        vo.setProfileImage(profile.getProfileImage());
+        vo.setNickName(profile.getNickName());
+        vo.setIntroduceOneLine(profile.getIntroduceOneLine());
+        vo.setJobGroup(profile.getJobGroup());
+        vo.setSkill(profile.getSkill());
         return vo;
     }
 
-    // 프로필 올리기
+    // 프로필 사진 올리기
     // 파일 경로
     @Value("${file.upload-dir}")
     private String uploadDir;
@@ -93,9 +105,10 @@ public class UserServiceImpl implements UserService {
             );
 
             // 파일이 없고 기본 파일이 아니면 파일 삭제 후 기본 파일로 저장
-            if (userProfile != null && !userProfile.getFile().equals("default.jpg"))
-                new File(uploadDir + "/" + userProfile.getFile()).delete();
-            userProfile.setFile("default.jpg");
+            if (userProfile != null && !userProfile.getProfileImage().equals("default.jpg"))
+                new File(uploadDir + "/" + userProfile.getProfileImage()).delete();
+            assert userProfile != null;
+            userProfile.setProfileImage("default.jpg");
             userProfileRepository.save(userProfile);
             return responseForm.setSuccess(null);
         }
@@ -110,10 +123,10 @@ public class UserServiceImpl implements UserService {
         UserProfile userProfile = userProfileRepository.findByUserNid(userNid).orElse(null);
 
         // 파일이 없고 기본 파일이 아니면 저장
-        if (userProfile != null && !userProfile.getFile().equals("default.jpg"))
-            new File(uploadDir + "/" + userProfile.getFile()).delete();
+        if (userProfile != null && !userProfile.getProfileImage().equals("default.jpg"))
+            new File(uploadDir + "/" + userProfile.getProfileImage()).delete();
 
-        userProfile.setFile(fileName);
+        userProfile.setProfileImage(fileName);
         userProfileRepository.save(userProfile);
 
         return responseForm.setSuccess("upload success");

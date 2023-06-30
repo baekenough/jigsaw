@@ -1,14 +1,17 @@
-package com.cliff.jigsaw.model.user.vo;
+package com.cliff.jigsaw.model.user.vo.profile;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
 @NoArgsConstructor
-public class UserProfileVo {
+public class GetUserProfileVo {
 
     Long userProfileNid;
-    Long userNid;
-    String file;
+    String profileImage;
+    String nickName;
+    String introduceOneLine;
+    String jobGroup;
+    String skill;
 
 }

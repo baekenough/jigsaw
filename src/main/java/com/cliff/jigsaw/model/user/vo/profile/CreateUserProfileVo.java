@@ -6,4 +6,12 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 public class CreateUserProfileVo {
+
+    Long userNid;
+    String profileImage;
+    String nickName;
+    String introduceOneLine;
+    String jobGroup;
+    String skill;
+
 }
