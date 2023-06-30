@@ -1,6 +1,6 @@
-package com.cliff.jigsaw.model;
+package com.cliff.jigsaw.model.user;
 
-import com.cliff.jigsaw.model.vo.CreateUserVo;
+import com.cliff.jigsaw.model.user.vo.CreateUserVo;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;

@@ -1,6 +1,6 @@
 package com.cliff.jigsaw.repository;
 
-import com.cliff.jigsaw.model.User;
+import com.cliff.jigsaw.model.user.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

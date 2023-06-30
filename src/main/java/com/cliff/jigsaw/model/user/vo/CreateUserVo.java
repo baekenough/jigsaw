@@ -1,4 +1,4 @@
-package com.cliff.jigsaw.model.vo;
+package com.cliff.jigsaw.model.user.vo;
 
 import lombok.Data;
 
