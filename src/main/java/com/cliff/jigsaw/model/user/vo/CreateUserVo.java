@@ -6,8 +6,5 @@ import lombok.Data;
 public class CreateUserVo {
     String email;
     String phoneNumber;
-    String jobGroup;
-    String skill;
-    String field;
     String type;
 }

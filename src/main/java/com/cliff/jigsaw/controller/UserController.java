@@ -2,10 +2,12 @@ package com.cliff.jigsaw.controller;
 
 import com.cliff.jigsaw.common.upload.ResponseForm;
 import com.cliff.jigsaw.model.user.User;
+import com.cliff.jigsaw.model.user.UserProfile;
 import com.cliff.jigsaw.model.user.vo.CreateUserVo;
+import com.cliff.jigsaw.model.user.vo.GetUserVo;
 import com.cliff.jigsaw.model.user.vo.UpdateUserVo;
-import com.cliff.jigsaw.model.user.vo.UserProfileVo;
-import com.cliff.jigsaw.model.user.vo.UserVo;
+import com.cliff.jigsaw.model.user.vo.profile.CreateUserProfileVo;
+import com.cliff.jigsaw.model.user.vo.profile.GetUserProfileVo;
 import com.cliff.jigsaw.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
@@ -23,7 +25,7 @@ public class UserController {
     private final UserService userService;
 
     @GetMapping("")
-    public User getUser(@RequestBody UserVo vo) {
+    public User getUser(@RequestBody GetUserVo vo) {
         return userService.findUser(vo.getEmail());
     }
 
@@ -37,21 +39,29 @@ public class UserController {
         return userService.createUser(vo);
     }
 
+
     //https://velog.io/@phraqe/Sekkison06-%EC%A4%91%EC%9A%94-%EB%A1%9C%EC%A7%81%EB%93%A4-2-feat.-%ED%8C%8C%EC%9D%BC-%EC%97%85%EB%A1%9C%EB%93%9C
     //profile image path
     @Value("${file.upload-dir}")
     private String uploadDir;
 
     //profile
-    @GetMapping("/profile")
-    public UserProfileVo getProfile(@RequestParam("userNid") Long userNid) {
+    @GetMapping("/profile/{userNid}")
+    public GetUserProfileVo getProfile(@PathVariable Long userNid) {
         return userService.getProfile(userNid);
     }
 
-    @ResponseBody
     @PostMapping("/profile")
+    public UserProfile createProfile(@RequestBody CreateUserProfileVo vo) throws Exception {
+        UserProfile profile = userService.createUserProfile(vo);
+        userService.updateUserProfileNid(profile.getUserProfileNid(), profile.getUserNid());
+        return profile;
+    }
+
+    @ResponseBody
+    @PostMapping("/profile/upload")
     public ResponseForm uploadProfile(
-            @RequestParam("file")MultipartFile file,
+            @RequestParam("file") MultipartFile file,
             @RequestParam("userNid") Long userNid) {
         try {
             return userService.uploadFile(userNid, file);

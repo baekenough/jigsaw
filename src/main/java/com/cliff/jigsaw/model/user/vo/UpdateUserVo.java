@@ -4,9 +4,7 @@ import lombok.Data;
 
 @Data
 public class UpdateUserVo {
+    String email;
     String phoneNumber;
-    String jobGroup;
-    String skill;
-    String field;
     String type;
 }

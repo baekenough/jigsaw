@@ -1,9 +1,8 @@
 package com.cliff.jigsaw.model.user;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import com.cliff.jigsaw.model.user.vo.profile.CreateUserProfileVo;
+import jakarta.persistence.*;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -16,6 +15,26 @@ public class UserProfile {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long userProfileNid;
     private Long userNid;
-    private String file;
+    private String profileImage;
+    private String name;
+    private String nickName;
+    private String job;
+    private String skill;
+    private String introduce;
+    private String projectField;
+    private String projectType;
+
+    @Builder
+    public UserProfile(CreateUserProfileVo vo) {
+        this.userNid = vo.getUserNid();
+        this.profileImage = vo.getProfileImage();
+        this.name = vo.getName();
+        this.nickName = vo.getNickName();
+        this.job = vo.getJob();
+        this.skill = vo.getSkill();
+        this.introduce = vo.getIntroduce();
+        this.projectField = vo.getProjectField();
+        this.projectType = vo.getProjectType();
+    }
 
 }
