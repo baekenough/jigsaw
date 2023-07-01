@@ -30,7 +30,7 @@ public class QUser extends EntityPathBase<User> {
 
     public final NumberPath<Long> userNid = createNumber("userNid", Long.class);
 
-    public final QUserProfile userProfile;
+    public final com.cliff.jigsaw.model.profile.QUserProfile userProfile;
 
     public QUser(String variable) {
         this(User.class, forVariable(variable), INITS);
@@ -50,7 +50,7 @@ public class QUser extends EntityPathBase<User> {
 
     public QUser(Class<? extends User> type, PathMetadata metadata, PathInits inits) {
         super(type, metadata, inits);
-        this.userProfile = inits.isInitialized("userProfile") ? new QUserProfile(forProperty("userProfile")) : null;
+        this.userProfile = inits.isInitialized("userProfile") ? new com.cliff.jigsaw.model.profile.QUserProfile(forProperty("userProfile")) : null;
     }
 
 }

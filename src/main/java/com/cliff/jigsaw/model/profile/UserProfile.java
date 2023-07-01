@@ -1,6 +1,6 @@
-package com.cliff.jigsaw.model.user;
+package com.cliff.jigsaw.model.profile;
 
-import com.cliff.jigsaw.model.user.vo.profile.CreateUserProfileVo;
+import com.cliff.jigsaw.model.profile.vo.profile.CreateUserProfileVo;
 import jakarta.persistence.*;
 import lombok.Builder;
 import lombok.Data;

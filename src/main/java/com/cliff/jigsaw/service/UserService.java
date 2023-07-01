@@ -2,11 +2,11 @@ package com.cliff.jigsaw.service;
 
 import com.cliff.jigsaw.common.upload.ResponseForm;
 import com.cliff.jigsaw.model.user.User;
-import com.cliff.jigsaw.model.user.UserProfile;
+import com.cliff.jigsaw.model.profile.UserProfile;
 import com.cliff.jigsaw.model.user.vo.CreateUserVo;
 import com.cliff.jigsaw.model.user.vo.UpdateUserVo;
-import com.cliff.jigsaw.model.user.vo.profile.CreateUserProfileVo;
-import com.cliff.jigsaw.model.user.vo.profile.GetUserProfileVo;
+import com.cliff.jigsaw.model.profile.vo.profile.CreateUserProfileVo;
+import com.cliff.jigsaw.model.profile.vo.profile.GetUserProfileVo;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
