@@ -7,11 +7,16 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class GetUserProfileVo {
 
+    Long userNid;
     Long userProfileNid;
     String profileImage;
+    String name;
     String nickName;
-    String introduceOneLine;
-    String jobGroup;
+    String job;
     String skill;
+    String introduce;
+    String projectField;
+    String projectType;
+
 
 }

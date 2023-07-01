@@ -44,7 +44,9 @@ public class UserServiceImpl implements UserService {
     public Optional<User> updateUser(Long userNid, UpdateUserVo vo) {
         userRepository.findById(userNid)
                 .map(user -> {
+                    user.setEmail(vo.getEmail());
                     user.setPhoneNumber(vo.getPhoneNumber());
+                    user.setType(vo.getType());
                     return userRepository.saveAndFlush(user);
                 })
                 .orElseThrow(
@@ -77,12 +79,14 @@ public class UserServiceImpl implements UserService {
                 () -> new CustomException(CustomErrorCode.USER_NOT_FOUND_ERROR)
         );
         GetUserProfileVo vo = new GetUserProfileVo();
-        vo.setUserProfileNid(profile.getUserProfileNid());
         vo.setProfileImage(profile.getProfileImage());
+        vo.setName(profile.getName());
         vo.setNickName(profile.getNickName());
-        vo.setIntroduceOneLine(profile.getIntroduceOneLine());
-        vo.setJobGroup(profile.getJobGroup());
+        vo.setJob(profile.getJob());
         vo.setSkill(profile.getSkill());
+        vo.setIntroduce(profile.getIntroduce());
+        vo.setProjectField(profile.getProjectField());
+        vo.setProjectType(profile.getProjectType());
         return vo;
     }
 

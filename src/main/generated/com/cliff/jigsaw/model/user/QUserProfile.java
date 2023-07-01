@@ -19,13 +19,19 @@ public class QUserProfile extends EntityPathBase<UserProfile> {
 
     public static final QUserProfile userProfile = new QUserProfile("userProfile");
 
-    public final StringPath introduceOneLine = createString("introduceOneLine");
+    public final StringPath introduce = createString("introduce");
 
-    public final StringPath jobGroup = createString("jobGroup");
+    public final StringPath job = createString("job");
+
+    public final StringPath name = createString("name");
 
     public final StringPath nickName = createString("nickName");
 
     public final StringPath profileImage = createString("profileImage");
+
+    public final StringPath projectField = createString("projectField");
+
+    public final StringPath projectType = createString("projectType");
 
     public final StringPath skill = createString("skill");
 

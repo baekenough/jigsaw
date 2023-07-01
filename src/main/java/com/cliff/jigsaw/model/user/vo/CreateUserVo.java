@@ -6,4 +6,5 @@ import lombok.Data;
 public class CreateUserVo {
     String email;
     String phoneNumber;
+    String type;
 }

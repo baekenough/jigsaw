@@ -9,9 +9,12 @@ public class CreateUserProfileVo {
 
     Long userNid;
     String profileImage;
+    String name;
     String nickName;
-    String introduceOneLine;
-    String jobGroup;
+    String job;
     String skill;
+    String introduce;
+    String projectField;
+    String projectType;
 
 }
