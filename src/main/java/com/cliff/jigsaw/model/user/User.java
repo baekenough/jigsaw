@@ -1,5 +1,6 @@
 package com.cliff.jigsaw.model.user;
 
+import com.cliff.jigsaw.model.profile.UserProfile;
 import com.cliff.jigsaw.model.user.vo.CreateUserVo;
 import jakarta.persistence.*;
 import lombok.Builder;
@@ -13,6 +14,7 @@ public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "user_nid")
     private Long userNid;
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_profile_nid")

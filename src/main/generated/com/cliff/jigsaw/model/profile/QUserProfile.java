@@ -1,4 +1,4 @@
-package com.cliff.jigsaw.model.user;
+package com.cliff.jigsaw.model.profile;
 
 import static com.querydsl.core.types.PathMetadataFactory.*;
 
@@ -15,7 +15,7 @@ import com.querydsl.core.types.Path;
 @Generated("com.querydsl.codegen.DefaultEntitySerializer")
 public class QUserProfile extends EntityPathBase<UserProfile> {
 
-    private static final long serialVersionUID = -1703575310L;
+    private static final long serialVersionUID = 1696835522L;
 
     public static final QUserProfile userProfile = new QUserProfile("userProfile");
 

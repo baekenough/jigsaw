@@ -1,4 +1,4 @@
-package com.cliff.jigsaw.model.user.vo.profile;
+package com.cliff.jigsaw.model.profile.vo.profile;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;

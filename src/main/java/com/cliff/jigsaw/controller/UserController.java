@@ -2,12 +2,12 @@ package com.cliff.jigsaw.controller;
 
 import com.cliff.jigsaw.common.upload.ResponseForm;
 import com.cliff.jigsaw.model.user.User;
-import com.cliff.jigsaw.model.user.UserProfile;
+import com.cliff.jigsaw.model.profile.UserProfile;
 import com.cliff.jigsaw.model.user.vo.CreateUserVo;
 import com.cliff.jigsaw.model.user.vo.GetUserVo;
 import com.cliff.jigsaw.model.user.vo.UpdateUserVo;
-import com.cliff.jigsaw.model.user.vo.profile.CreateUserProfileVo;
-import com.cliff.jigsaw.model.user.vo.profile.GetUserProfileVo;
+import com.cliff.jigsaw.model.profile.vo.profile.CreateUserProfileVo;
+import com.cliff.jigsaw.model.profile.vo.profile.GetUserProfileVo;
 import com.cliff.jigsaw.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
