@@ -17,16 +17,15 @@ public class User {
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_profile_nid")
     private UserProfile userProfile;
-    @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_favorite_nid")
-    private UserFavorite userFavorite;
     private String email;
     private String phoneNumber;
+    private String type;
 
     @Builder
     public User(CreateUserVo vo) {
         this.email = vo.getEmail();
         this.phoneNumber = vo.getPhoneNumber();
+        this.type = vo.getType();
     }
 
 }

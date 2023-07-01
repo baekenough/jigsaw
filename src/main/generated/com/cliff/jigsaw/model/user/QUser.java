@@ -26,7 +26,7 @@ public class QUser extends EntityPathBase<User> {
 
     public final StringPath phoneNumber = createString("phoneNumber");
 
-    public final QUserFavorite userFavorite;
+    public final StringPath type = createString("type");
 
     public final NumberPath<Long> userNid = createNumber("userNid", Long.class);
 
@@ -50,7 +50,6 @@ public class QUser extends EntityPathBase<User> {
 
     public QUser(Class<? extends User> type, PathMetadata metadata, PathInits inits) {
         super(type, metadata, inits);
-        this.userFavorite = inits.isInitialized("userFavorite") ? new QUserFavorite(forProperty("userFavorite")) : null;
         this.userProfile = inits.isInitialized("userProfile") ? new QUserProfile(forProperty("userProfile")) : null;
     }
 
