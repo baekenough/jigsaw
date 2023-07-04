@@ -13,8 +13,8 @@ import java.util.Optional;
 @Repository
 public interface UserRepository extends JpaRepository<User, Long> {
     Optional<User> findUserByEmail(String email);
-    @Query(value = "UPDATE cliff.user m set m.user_profile_nid =:user_profile_nid WHERE m.user_nid =:user_nid", nativeQuery = true)
+    @Query(value = "UPDATE cliff.user m set m.user_profile_nid =:user_profile_nid WHERE m.id =:id", nativeQuery = true)
     @Modifying
     @Transactional
-    void updateUserProfileNid(@Param("user_profile_nid") Long userProfileNid, @Param("user_nid") Long userNid);
+    void updateUserProfileNid(@Param("user_profile_nid") Long userProfileNid, @Param("id") Long id);
 }

@@ -15,13 +15,13 @@ import java.util.Optional;
 public interface UserService {
 
     User findUser(String email);
-    Optional<User> updateUser(Long userNid, UpdateUserVo vo);
+    Optional<User> updateUser(Long id, UpdateUserVo vo);
     User createUser(CreateUserVo vo);
     UserProfile createUserProfile(CreateUserProfileVo vo);
 
-    GetUserProfileVo getProfile(Long userNid);
-    ResponseForm uploadFile(Long userNid, MultipartFile file) throws IOException;
+    GetUserProfileVo getProfile(Long id);
+    ResponseForm uploadFile(Long id, MultipartFile file) throws IOException;
 
-    void updateUserProfileNid(Long userProfileNid, Long userNid) throws Exception;
+    void updateUserProfileNid(Long userProfileNid, Long id) throws Exception;
 
 }

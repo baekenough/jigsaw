@@ -41,8 +41,8 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public Optional<User> updateUser(Long userNid, UpdateUserVo vo) {
-        userRepository.findById(userNid)
+    public Optional<User> updateUser(Long id, UpdateUserVo vo) {
+        userRepository.findById(id)
                 .map(user -> {
                     user.setEmail(vo.getEmail());
                     user.setPhoneNumber(vo.getPhoneNumber());
@@ -52,7 +52,7 @@ public class UserServiceImpl implements UserService {
                 .orElseThrow(
                         () -> new CustomException(CustomErrorCode.USER_NOT_FOUND_ERROR)
                 );
-        return userRepository.findById(userNid);
+        return userRepository.findById(id);
     }
 
     @Override
@@ -70,12 +70,12 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void updateUserProfileNid(Long userProfileNid, Long userNid) {
-        userRepository.updateUserProfileNid(userProfileNid, userNid);
+    public void updateUserProfileNid(Long userProfileNid, Long id) {
+        userRepository.updateUserProfileNid(userProfileNid, id);
     }
 
-    public GetUserProfileVo getProfile(Long userNid) {
-        UserProfile profile =  userProfileRepository.findByUserNid(userNid).orElseThrow(
+    public GetUserProfileVo getProfile(Long id) {
+        UserProfile profile =  userProfileRepository.findById(id).orElseThrow(
                 () -> new CustomException(CustomErrorCode.USER_NOT_FOUND_ERROR)
         );
         GetUserProfileVo vo = new GetUserProfileVo();
@@ -98,13 +98,13 @@ public class UserServiceImpl implements UserService {
     // 이미지 파일은 최대 5MB
     private static final long MAX_IMAGE_SIZE = 5242880;
 
-    public ResponseForm uploadFile(Long userNid, MultipartFile file) throws IOException {
+    public ResponseForm uploadFile(Long id, MultipartFile file) throws IOException {
         ResponseForm responseForm = new ResponseForm();
 
         // 파일이 없거나 빈파일이면 레파지토리에서 userNid 기준으로 탐색
         if (file.isEmpty() || "".equals(file.getName())) {
             System.out.println("NO FILE");
-            UserProfile userProfile = userProfileRepository.findByUserNid(userNid).orElseThrow(
+            UserProfile userProfile = userProfileRepository.findById(id).orElseThrow(
                     () -> new CustomException(CustomErrorCode.FILE_SIZE_IS_TOO_BIG)
             );
 
@@ -123,8 +123,8 @@ public class UserServiceImpl implements UserService {
         }
 
         // 이미지 저장
-        String fileName = writeFile(file, userNid);
-        UserProfile userProfile = userProfileRepository.findByUserNid(userNid).orElse(null);
+        String fileName = writeFile(file, id);
+        UserProfile userProfile = userProfileRepository.findById(id).orElse(null);
 
         // 파일이 없고 기본 파일이 아니면 저장
         if (userProfile != null && !userProfile.getProfileImage().equals("default.jpg"))
@@ -136,7 +136,7 @@ public class UserServiceImpl implements UserService {
         return responseForm.setSuccess("upload success");
     }
 
-    private String writeFile(MultipartFile file, Long userNid) throws IOException {
+    private String writeFile(MultipartFile file, Long id) throws IOException {
         String extension = com.google.common.io.Files.getFileExtension(file.getOriginalFilename());
         String fileName = UUID.randomUUID().toString() + "." + extension;
         byte[] fileContent = file.getBytes();

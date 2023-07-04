@@ -23,7 +23,7 @@ public class ProfileServiceImpl implements ProfileService {
 
     @Override
     public List<ProfileComment> findProfileCommentList(Long profileNid) {
-        return profileCommentRepository.findProfileCommnetListByProfileNid(profileNid);
+        return profileCommentRepository.findProfileCommentListByProfileNid(profileNid);
     }
 
     @Override

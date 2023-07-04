@@ -14,8 +14,8 @@ public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "user_nid")
-    private Long userNid;
+    @Column(name = "id")
+    private Long id;
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_profile_nid")
     private UserProfile userProfile;

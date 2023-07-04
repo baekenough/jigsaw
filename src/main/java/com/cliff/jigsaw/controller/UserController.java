@@ -29,9 +29,9 @@ public class UserController {
         return userService.findUser(vo.getEmail());
     }
 
-    @PutMapping("{userNid}")
-    public Optional<User> updateUser(@PathVariable Long userNid, @RequestBody UpdateUserVo vo) {
-        return userService.updateUser(userNid, vo);
+    @PutMapping("{id}")
+    public Optional<User> updateUser(@PathVariable Long id, @RequestBody UpdateUserVo vo) {
+        return userService.updateUser(id, vo);
     }
 
     @PostMapping("")
@@ -46,9 +46,9 @@ public class UserController {
     private String uploadDir;
 
     //profile
-    @GetMapping("/profile/{userNid}")
-    public GetUserProfileVo getProfile(@PathVariable Long userNid) {
-        return userService.getProfile(userNid);
+    @GetMapping("/profile/{id}")
+    public GetUserProfileVo getProfile(@PathVariable Long id) {
+        return userService.getProfile(id);
     }
 
     @PostMapping("/profile")
@@ -62,9 +62,9 @@ public class UserController {
     @PostMapping("/profile/upload")
     public ResponseForm uploadProfile(
             @RequestParam("file") MultipartFile file,
-            @RequestParam("userNid") Long userNid) {
+            @RequestParam("id") Long id) {
         try {
-            return userService.uploadFile(userNid, file);
+            return userService.uploadFile(id, file);
         } catch (IOException e) {
             return null;
         }

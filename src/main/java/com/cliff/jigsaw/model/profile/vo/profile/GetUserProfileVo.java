@@ -7,7 +7,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class GetUserProfileVo {
 
-    Long userNid;
+    Long id;
     Long userProfileNid;
     String profileImage;
     String name;

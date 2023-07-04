@@ -14,7 +14,7 @@ public class UserProfile {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long userProfileNid;
-    private Long userNid;
+    private Long id;
     private String profileImage;
     private String name;
     private String nickName;
@@ -26,7 +26,7 @@ public class UserProfile {
 
     @Builder
     public UserProfile(CreateUserProfileVo vo) {
-        this.userNid = vo.getUserNid();
+        this.id = vo.getId();
         this.profileImage = vo.getProfileImage();
         this.name = vo.getName();
         this.nickName = vo.getNickName();
