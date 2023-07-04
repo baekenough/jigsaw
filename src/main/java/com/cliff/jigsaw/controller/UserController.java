@@ -54,7 +54,7 @@ public class UserController {
     @PostMapping("/profile")
     public UserProfile createProfile(@RequestBody CreateUserProfileVo vo) throws Exception {
         UserProfile profile = userService.createUserProfile(vo);
-        userService.updateUserProfileNid(profile.getUserProfileNid(), profile.getUserNid());
+        userService.updateUserProfileNid(profile.getUserProfileNid(), profile.getId());
         return profile;
     }
 
