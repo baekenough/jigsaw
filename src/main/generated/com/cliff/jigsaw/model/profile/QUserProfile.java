@@ -19,6 +19,8 @@ public class QUserProfile extends EntityPathBase<UserProfile> {
 
     public static final QUserProfile userProfile = new QUserProfile("userProfile");
 
+    public final NumberPath<Long> id = createNumber("id", Long.class);
+
     public final StringPath introduce = createString("introduce");
 
     public final StringPath job = createString("job");
@@ -34,8 +36,6 @@ public class QUserProfile extends EntityPathBase<UserProfile> {
     public final StringPath projectType = createString("projectType");
 
     public final StringPath skill = createString("skill");
-
-    public final NumberPath<Long> userNid = createNumber("userNid", Long.class);
 
     public final NumberPath<Long> userProfileNid = createNumber("userProfileNid", Long.class);
 
