@@ -9,6 +9,6 @@ import java.util.List;
 @Repository
 public interface ProfileCommentRepository extends JpaRepository<ProfileComment, Long> {
 
-    List<ProfileComment> findProfileCommnetListByProfileNid(Long profileNid);
+    List<ProfileComment> findProfileCommentListByProfileNid(Long profileNid);
 
 }

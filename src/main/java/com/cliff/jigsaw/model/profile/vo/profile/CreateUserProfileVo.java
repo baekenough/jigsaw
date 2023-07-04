@@ -7,7 +7,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class CreateUserProfileVo {
 
-    Long userNid;
+    Long id;
     String profileImage;
     String name;
     String nickName;

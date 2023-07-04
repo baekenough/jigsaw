@@ -24,11 +24,11 @@ public class QUser extends EntityPathBase<User> {
 
     public final StringPath email = createString("email");
 
+    public final NumberPath<Long> id = createNumber("id", Long.class);
+
     public final StringPath phoneNumber = createString("phoneNumber");
 
     public final StringPath type = createString("type");
-
-    public final NumberPath<Long> userNid = createNumber("userNid", Long.class);
 
     public final com.cliff.jigsaw.model.profile.QUserProfile userProfile;
 
